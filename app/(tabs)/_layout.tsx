@@ -1,45 +1,28 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs, useRouter } from 'expo-router';
+import { Pressable } from 'react-native';
+import { gettabicon } from '../gettabicon';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function Layout() {
+  const router = useRouter();
 
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) =>
+          gettabicon(route.name, color, size),
+        headerRight: () => (
+          <Pressable onPress={() => router.push('/learning')}>
+            <Ionicons name="bar-chart" size={24} style={{ marginRight: 15 }} />
+          </Pressable>
+        ),
+      })}
+    >
+      <Tabs.Screen name="import/index" options={{ title: 'Import' }} />
+      <Tabs.Screen name="vocabulary/index" options={{ title: 'Vocabulary' }} />
+      <Tabs.Screen name="kanji/index" options={{ title: 'Kanji' }} />
+      <Tabs.Screen name="grammar/index" options={{ title: 'Grammar' }} />
+      <Tabs.Screen name="listen/index" options={{ title: 'Listen' }} />
     </Tabs>
   );
 }
