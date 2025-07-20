@@ -1,11 +1,13 @@
 import React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
-export default function ImportIcon({ color, size }: { color: string; size: number }) {
+export default function ImportIcon({ color = 'black', size = 24 }) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Path d="M5 12h14" stroke={color} strokeWidth="2" strokeLinecap="round" />
-      <Path d="M12 5l7 7-7 7" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <Path
+        d="M4 4h16v2H4V4zm0 6h10v2H4v-2zm0 6h16v2H4v-2z"
+        fill={color}
+      />
     </Svg>
   );
 }
