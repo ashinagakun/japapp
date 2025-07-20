@@ -11,11 +11,11 @@ export default function Layout() {
         headerShown: false,
       })}
     >
-      <Tabs.Screen name="(tabs)/import/index" options={{ title: 'Import' }} />
-      <Tabs.Screen name="(tabs)/vocabulary/index" options={{ title: 'Vocabulaire' }} />
-      <Tabs.Screen name="(tabs)/kanji/index" options={{ title: 'Kanji' }} />
-      <Tabs.Screen name="(tabs)/grammar/index" options={{ title: 'Grammaire' }} />
-      <Tabs.Screen name="(tabs)/listen/index" options={{ title: 'Écoute' }} />
+      <Tabs.Screen name="import" options={{ title: 'Import' }} />
+      <Tabs.Screen name="vocabulary" options={{ title: 'Vocabulaire' }} />
+      <Tabs.Screen name="kanji" options={{ title: 'Kanji' }} />
+      <Tabs.Screen name="grammar" options={{ title: 'Grammaire' }} />
+      <Tabs.Screen name="listen" options={{ title: 'Écoute' }} />
     </Tabs>
   );
 }
